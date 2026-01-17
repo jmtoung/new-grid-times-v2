@@ -29,16 +29,58 @@ const Header = () => {
         </Row>
       </SuperHeader>
       <MainHeader>
+        <DesktopActionGroup>
+          <button>
+            <Search size={24} />
+          </button>
+          <button>
+            <Menu size={24} />
+          </button>
+        </DesktopActionGroup>
         <Logo />
+        <SubscribeWrapper>
+          <Button style={{ textAlign: 'center' }}>
+            Subscribe
+          </Button>
+          <a href="/">
+            <SubscribeLink>Already a subscriber?</SubscribeLink>
+          </a>
+        </SubscribeWrapper>
       </MainHeader>
     </header>
   );
 };
 
+const SubscribeLink = styled.p`
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-medium);
+  text-decoration: underline;
+  font-style: italic;
+`;
+
+const SubscribeWrapper = styled.div`
+  justify-self: end;
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  justify-content: center;
+  align-self: end;
+`;
+
 const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -59,12 +101,28 @@ const ActionGroup = styled.div`
   }
 `;
 
+const DesktopActionGroup = styled(ActionGroup)`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
+`;
+
 const MainHeader = styled(MaxWidthWrapper)`
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-content: revert;
+  }
 `;
 
 export default Header;
